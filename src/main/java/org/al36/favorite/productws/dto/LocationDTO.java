@@ -6,18 +6,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.io.Serializable;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class LocationDTO {
+public class LocationDTO implements Serializable {
 
     private String label;
-
-    private List<ProductTypeDTO> productTypes;
 
 }
 

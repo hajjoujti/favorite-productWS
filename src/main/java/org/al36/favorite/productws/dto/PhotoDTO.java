@@ -6,23 +6,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.io.Serializable;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class PhotoDTO {
+public class PhotoDTO implements Serializable {
 
     private Integer id;
 
     private String path;
 
     private String description;
-
-    private List<ClothDTO> cloths;
-
-    private List<DesignDTO> designs;
 
 }

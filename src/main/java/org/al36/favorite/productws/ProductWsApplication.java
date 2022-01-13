@@ -1,13 +1,13 @@
-package org.al36.favorite.orderws;
+package org.al36.favorite.productws;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OrderWsApplication {
+public class ProductWsApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OrderWsApplication.class, args);
+        SpringApplication.run(ProductWsApplication.class, args);
     }
 
 }

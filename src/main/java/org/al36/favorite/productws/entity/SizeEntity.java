@@ -11,19 +11,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "size")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class Size {
+public class SizeEntity {
 
     @Id
     private String label;
 
     @ManyToOne
     @JoinColumn(name = "stock_id")
-    private Stock stock;
+    private StockEntity stockEntity;
 
 }

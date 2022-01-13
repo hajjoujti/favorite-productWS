@@ -8,35 +8,31 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import java.util.List;
 
-@Entity
+@Entity(name = "stock")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class Photo {
+public class StockEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true)
-    private String path;
+    @Column(nullable = false)
+    private Integer quantity;
 
-    @Column()
-    private String description;
+    @OneToMany(mappedBy = "stockEntity")
+    private List<ClothEntity> clothEntities;
 
-    @ManyToMany(mappedBy = "photos")
-    private List<Cloth> cloths;
-
-    @ManyToMany(mappedBy = "photos")
-    private List<Design> designs;
+    @OneToMany(mappedBy = "stockEntity")
+    private List<SizeEntity> sizeEntity;
 
 }

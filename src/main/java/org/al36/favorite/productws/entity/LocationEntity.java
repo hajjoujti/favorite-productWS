@@ -13,13 +13,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
-@Entity
+@Entity(name = "location")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class Location {
+public class LocationEntity {
 
     @Id
     private String label;
@@ -29,7 +29,7 @@ public class Location {
             name = "location_product_type",
             joinColumns = @JoinColumn(name = "location_label"),
             inverseJoinColumns = @JoinColumn(name = "product_type_name"))
-    private List<ProductType> productTypes;
+    private List<ProductTypeEntity> productTypeEntities;
 
 }
 

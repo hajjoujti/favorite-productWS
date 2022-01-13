@@ -11,18 +11,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
 
-@Entity
+@Entity(name = "design_type")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class DesignType {
+public class DesignTypeEntity {
 
     @Id
     private String label;
 
-    @OneToMany(mappedBy = "designType")
-    private List<Design> designs;
+    @OneToMany(mappedBy = "designTypeEntity")
+    private List<DesignEntity> designEntities;
 
 }

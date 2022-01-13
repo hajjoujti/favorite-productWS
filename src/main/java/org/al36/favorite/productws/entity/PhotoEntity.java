@@ -11,28 +11,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import java.util.List;
 
-@Entity
+@Entity(name = "photo")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class Stock {
+public class PhotoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
-    private Integer quantity;
+    @Column(nullable = false, unique = true)
+    private String path;
 
-    @OneToMany(mappedBy = "stock")
-    private List<Cloth> cloths;
+    @Column()
+    private String description;
 
-    @OneToMany(mappedBy = "stock")
-    private List<Size> size;
+    @ManyToMany(mappedBy = "photoEntities")
+    private List<ClothEntity> clothEntities;
+
+    @ManyToMany(mappedBy = "photoEntities")
+    private List<DesignEntity> designEntities;
 
 }

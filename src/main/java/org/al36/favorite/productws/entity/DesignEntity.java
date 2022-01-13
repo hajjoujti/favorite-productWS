@@ -17,13 +17,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.util.List;
 
-@Entity
+@Entity(name = "design")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class Design {
+public class DesignEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,13 +40,13 @@ public class Design {
 
     @ManyToOne
     @JoinColumn(name = "design_type_label")
-    private DesignType designType;
+    private DesignTypeEntity designTypeEntity;
 
     @ManyToMany
     @JoinTable(
             name = "design_photo",
             joinColumns = @JoinColumn(name = "design_id"),
             inverseJoinColumns = @JoinColumn(name = "photo_id"))
-    private List<Photo> photos;
+    private List<PhotoEntity> photoEntities;
 
 }

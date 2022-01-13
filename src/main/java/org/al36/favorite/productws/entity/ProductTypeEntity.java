@@ -7,27 +7,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import java.util.List;
 
-@Entity
+@Entity(name = "product_type")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class ProductType {
+public class ProductTypeEntity {
 
     @Id
     private String name;
 
-    @OneToMany(mappedBy = "productType")
-    private List<Cloth> cloths;
+    @OneToMany(mappedBy = "productTypeEntity")
+    private List<ClothEntity> clothEntities;
 
-    @ManyToMany(mappedBy = "productTypes")
-    private List<Location> locations;
+    @ManyToMany(mappedBy = "productTypeEntities")
+    private List<LocationEntity> locationEntities;
 
 }

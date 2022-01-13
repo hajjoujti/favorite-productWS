@@ -18,13 +18,13 @@ import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
+@Entity(name = "cloth")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class Cloth {
+public class ClothEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,17 +50,17 @@ public class Cloth {
 
     @ManyToOne
     @JoinColumn(name = "product_type_name")
-    private ProductType productType;
+    private ProductTypeEntity productTypeEntity;
 
     @ManyToOne
     @JoinColumn(name = "stock_id")
-    private Stock stock;
+    private StockEntity stockEntity;
 
     @ManyToMany
     @JoinTable(
             name = "cloth_photo",
             joinColumns = @JoinColumn(name = "cloth_id"),
             inverseJoinColumns = @JoinColumn(name = "photo_id"))
-    private List<Photo> photos;
+    private List<PhotoEntity> photoEntities;
 
 }

@@ -10,6 +10,6 @@ public interface ClothService {
 
     ClothDTO getClotheById(Integer id);
 
-    ClothDTO postClothe(ClothDTO cloth);
+    ClothDTO postCloth(ClothDTO clothDTO);
 
 }

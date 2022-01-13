@@ -24,6 +24,6 @@ public class SizeEntity {
 
     @ManyToOne
     @JoinColumn(name = "stock_id")
-    private StockEntity stockEntity;
+    private StockEntity stock;
 
 }

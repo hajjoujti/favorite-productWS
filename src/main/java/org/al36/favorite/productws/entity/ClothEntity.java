@@ -50,17 +50,17 @@ public class ClothEntity {
 
     @ManyToOne
     @JoinColumn(name = "product_type_name")
-    private ProductTypeEntity productTypeEntity;
+    private ProductTypeEntity productType;
 
     @ManyToOne
     @JoinColumn(name = "stock_id")
-    private StockEntity stockEntity;
+    private StockEntity stock;
 
     @ManyToMany
     @JoinTable(
             name = "cloth_photo",
             joinColumns = @JoinColumn(name = "cloth_id"),
             inverseJoinColumns = @JoinColumn(name = "photo_id"))
-    private List<PhotoEntity> photoEntities;
+    private List<PhotoEntity> photos;
 
 }

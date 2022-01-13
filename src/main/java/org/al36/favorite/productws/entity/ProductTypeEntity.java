@@ -23,10 +23,10 @@ public class ProductTypeEntity {
     @Id
     private String name;
 
-    @OneToMany(mappedBy = "productTypeEntity")
-    private List<ClothEntity> clothEntities;
+    @OneToMany(mappedBy = "productType")
+    private List<ClothEntity> cloths;
 
-    @ManyToMany(mappedBy = "productTypeEntities")
-    private List<LocationEntity> locationEntities;
+    @ManyToMany(mappedBy = "productTypes")
+    private List<LocationEntity> locations;
 
 }

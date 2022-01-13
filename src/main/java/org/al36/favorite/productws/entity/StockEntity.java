@@ -29,10 +29,10 @@ public class StockEntity {
     @Column(nullable = false)
     private Integer quantity;
 
-    @OneToMany(mappedBy = "stockEntity")
-    private List<ClothEntity> clothEntities;
+    @OneToMany(mappedBy = "stock")
+    private List<ClothEntity> cloths;
 
-    @OneToMany(mappedBy = "stockEntity")
+    @OneToMany(mappedBy = "stock")
     private List<SizeEntity> sizeEntity;
 
 }

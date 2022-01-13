@@ -40,13 +40,13 @@ public class DesignEntity {
 
     @ManyToOne
     @JoinColumn(name = "design_type_label")
-    private DesignTypeEntity designTypeEntity;
+    private DesignTypeEntity designType;
 
     @ManyToMany
     @JoinTable(
             name = "design_photo",
             joinColumns = @JoinColumn(name = "design_id"),
             inverseJoinColumns = @JoinColumn(name = "photo_id"))
-    private List<PhotoEntity> photoEntities;
+    private List<PhotoEntity> photos;
 
 }

@@ -22,7 +22,7 @@ public class DesignTypeEntity {
     @Id
     private String label;
 
-    @OneToMany(mappedBy = "designTypeEntity")
-    private List<DesignEntity> designEntities;
+    @OneToMany(mappedBy = "designType")
+    private List<DesignEntity> designs;
 
 }

@@ -29,7 +29,7 @@ public class LocationEntity {
             name = "location_product_type",
             joinColumns = @JoinColumn(name = "location_label"),
             inverseJoinColumns = @JoinColumn(name = "product_type_name"))
-    private List<ProductTypeEntity> productTypeEntities;
+    private List<ProductTypeEntity> productTypes;
 
 }
 

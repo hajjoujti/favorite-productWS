@@ -32,10 +32,10 @@ public class PhotoEntity {
     @Column()
     private String description;
 
-    @ManyToMany(mappedBy = "photoEntities")
-    private List<ClothEntity> clothEntities;
+    @ManyToMany(mappedBy = "photos")
+    private List<ClothEntity> cloths;
 
-    @ManyToMany(mappedBy = "photoEntities")
-    private List<DesignEntity> designEntities;
+    @ManyToMany(mappedBy = "photos")
+    private List<DesignEntity> designs;
 
 }

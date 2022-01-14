@@ -12,4 +12,6 @@ public interface ClothService {
 
     ClothDTO postCloth(ClothDTO clothDTO);
 
+    ClothDTO getClothByReference(String reference);
+
 }

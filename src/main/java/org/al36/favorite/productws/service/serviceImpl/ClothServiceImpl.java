@@ -8,11 +8,13 @@ import org.al36.favorite.productws.utils.DTOConverter;
 import org.al36.favorite.productws.utils.EntityConverter;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class ClothServiceImpl implements ClothService {
 
     private final EntityConverter entityConverter;
@@ -48,6 +50,12 @@ public class ClothServiceImpl implements ClothService {
         ClothEntity clothEntity = dtoConverter.ClothEntity(clothDTO);
         clothEntity = clothRepository.save(clothEntity);
         return entityConverter.toClothDTO(clothEntity);
+    }
+
+    @Override
+    public ClothDTO getClothByReference(String reference) {
+        Optional<ClothEntity> clothEntity = clothRepository.findByReference(reference);
+        return clothEntity.map(entityConverter::toClothDTO).orElse(null);
     }
 
 }

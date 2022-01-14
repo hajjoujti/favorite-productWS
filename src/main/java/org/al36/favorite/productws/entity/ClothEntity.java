@@ -17,6 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "cloth")
 @NoArgsConstructor
@@ -62,5 +63,18 @@ public class ClothEntity {
             joinColumns = @JoinColumn(name = "cloth_id"),
             inverseJoinColumns = @JoinColumn(name = "photo_id"))
     private List<PhotoEntity> photos;
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        ClothEntity that = (ClothEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 5;
+    }
 
 }

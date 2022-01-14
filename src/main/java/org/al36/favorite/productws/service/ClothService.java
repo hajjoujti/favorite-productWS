@@ -19,6 +19,6 @@ public interface ClothService {
 
     ClothDTO saveCloth(ClothDTO clothDTO);
 
-    void deleteClothById(Integer id);
+    ClothDTO deleteClothById(Integer id);
 
 }

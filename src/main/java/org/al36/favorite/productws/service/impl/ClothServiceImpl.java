@@ -10,6 +10,7 @@ import org.al36.favorite.productws.utils.EntityConverter;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,9 +35,9 @@ public class ClothServiceImpl implements ClothService {
 
     @Override
     public List<ClothDTO> getAllClothes() {
-        List<ClothDTO> clothsDTOS = new ArrayList<>();
-        clothRepository.findAll().forEach(cloth -> clothsDTOS.add(entityConverter.toClothDTO(cloth)));
-        return clothsDTOS;
+        List<ClothDTO> clothDTOS = new ArrayList<>();
+        clothRepository.findAll().forEach(cloth -> clothDTOS.add(entityConverter.toClothDTO(cloth)));
+        return clothDTOS;
     }
 
     @Override
@@ -69,12 +70,15 @@ public class ClothServiceImpl implements ClothService {
 
     @Override
     public ClothDTO saveCloth(ClothDTO clothDTO) {
-        return entityConverter.toClothDTO(clothRepository.save(dtoConverter.ClothEntity(clothDTO)));
+        ClothEntity clothEntity = clothRepository.save(dtoConverter.ClothEntity(clothDTO));
+        return entityConverter.toClothDTO(clothEntity);
     }
 
     @Override
-    public void deleteClothById(Integer id) {
-        clothRepository.deleteById(id);
+    public ClothDTO deleteClothById(Integer id) {
+        ClothDTO clothDTO = getClotheById(id);
+        clothDTO.setRefDeletionDate(LocalDateTime.now());
+        return saveCloth(clothDTO);
     }
 
 }

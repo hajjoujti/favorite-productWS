@@ -1,4 +1,4 @@
-package org.al36.favorite.productws.service.serviceImpl;
+package org.al36.favorite.productws.service.impl;
 
 import org.al36.favorite.productws.dto.DesignDTO;
 import org.al36.favorite.productws.repository.DesignRepository;

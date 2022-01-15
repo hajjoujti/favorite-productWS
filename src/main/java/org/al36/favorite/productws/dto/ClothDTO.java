@@ -33,4 +33,6 @@ public class ClothDTO implements Serializable {
 
     private List<PhotoDTO> photos;
 
+    private List<StockDTO> stocks;
+
 }

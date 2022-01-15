@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,5 +17,7 @@ import java.io.Serializable;
 public class SizeDTO implements Serializable {
 
     private String label;
+
+    private List<StockDTO> stocks;
 
 }

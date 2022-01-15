@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,8 +17,6 @@ public class StockDTO implements Serializable {
 
     private Integer id;
 
-    private List<ClothDTO> cloths;
-
-    private List<SizeDTO> sizes;
+    private Integer quantity;
 
 }

@@ -11,7 +11,8 @@ public enum ResponseMessage {
     CLOTH_UPDATE_OK("The cloth has been successfully updated!"),
     CLOTH_DELETE_NOT_FOUND("The cloth you are trying updating does not exist!"),
     CLOTH_DELETED("The cloth has been successfully deleted!"),
-    CLOTH_CREATED("The cloth has been successfully created");
+    CLOTH_CREATED("The cloth has been successfully created"),
+    CLOTHES_PRODUCT_TYPE_NOT_FOUND("There are no clothes having the requested type in the database!");
 
     private final String message;
 

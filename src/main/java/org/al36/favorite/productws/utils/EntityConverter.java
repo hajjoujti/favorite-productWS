@@ -1,13 +1,17 @@
 package org.al36.favorite.productws.utils;
 
 import org.al36.favorite.productws.dto.ClothDTO;
+import org.al36.favorite.productws.dto.ClothFullDTO;
 import org.al36.favorite.productws.dto.DesignDTO;
 import org.al36.favorite.productws.dto.DesignTypeDTO;
 import org.al36.favorite.productws.dto.LocationDTO;
 import org.al36.favorite.productws.dto.PhotoDTO;
 import org.al36.favorite.productws.dto.ProductTypeDTO;
+import org.al36.favorite.productws.dto.ProductTypeWithoutClothesDTO;
 import org.al36.favorite.productws.dto.SizeDTO;
+import org.al36.favorite.productws.dto.SizeWithoutStocksDTO;
 import org.al36.favorite.productws.dto.StockDTO;
+import org.al36.favorite.productws.dto.StockWithSizeDTO;
 import org.al36.favorite.productws.entity.ClothEntity;
 import org.al36.favorite.productws.entity.DesignEntity;
 import org.al36.favorite.productws.entity.DesignTypeEntity;
@@ -23,6 +27,8 @@ public interface EntityConverter {
 
     ClothDTO toClothDTO(ClothEntity clothEntity);
 
+    ClothFullDTO toClothFullDTO(ClothEntity clothEntity);
+
     DesignDTO toDesignDTO(DesignEntity designEntity);
 
     DesignTypeDTO toDesignTypeDTO(DesignTypeEntity designTypeEntity);
@@ -33,8 +39,14 @@ public interface EntityConverter {
 
     ProductTypeDTO toProductTypeDTO(ProductTypeEntity productTypeEntity);
 
+    ProductTypeWithoutClothesDTO toProductWithoutClothesTypeDTO(ProductTypeEntity productTypeEntity);
+
     SizeDTO toSizeDTO(SizeEntity sizeEntity);
 
+    SizeWithoutStocksDTO toSizeWithoutStocksDTO(SizeEntity sizeEntity);
+
     StockDTO toStockDTO(StockEntity stockEntity);
+
+    StockWithSizeDTO toStockWithSizeDTO(StockEntity stockEntity);
 
 }

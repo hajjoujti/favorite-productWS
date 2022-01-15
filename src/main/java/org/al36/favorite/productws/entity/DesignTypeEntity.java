@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -22,7 +23,7 @@ public class DesignTypeEntity {
     @Id
     private String label;
 
-    @OneToMany(mappedBy = "designType")
+    @OneToMany(mappedBy = "designType", cascade = CascadeType.ALL)
     private List<DesignEntity> designs;
 
 }

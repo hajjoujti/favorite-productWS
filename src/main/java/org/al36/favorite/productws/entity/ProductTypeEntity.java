@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -24,10 +25,10 @@ public class ProductTypeEntity {
     @Id
     private String name;
 
-    @OneToMany(mappedBy = "productType")
+    @OneToMany(mappedBy = "productType", cascade = CascadeType.ALL)
     private List<ClothEntity> cloths;
 
-    @ManyToMany(mappedBy = "productTypes")
+    @ManyToMany(mappedBy = "productTypes", cascade = CascadeType.ALL)
     private List<LocationEntity> locations;
 
     @Override

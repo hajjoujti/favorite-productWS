@@ -11,8 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "stock")
 @NoArgsConstructor
@@ -29,10 +29,12 @@ public class StockEntity {
     @Column(nullable = false)
     private Integer quantity;
 
-    @OneToMany(mappedBy = "stock")
-    private List<ClothEntity> cloths;
+    @ManyToOne
+    @JoinColumn(name = "cloth_id")
+    private ClothEntity cloth;
 
-    @OneToMany(mappedBy = "stock")
-    private List<SizeEntity> sizeEntity;
+    @ManyToOne
+    @JoinColumn(name = "size_label")
+    private SizeEntity size;
 
 }

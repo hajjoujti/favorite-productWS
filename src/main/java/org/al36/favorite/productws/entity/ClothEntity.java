@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -49,15 +51,14 @@ public class ClothEntity {
     @Column()
     private String description;
 
+    @OneToMany(mappedBy = "cloth", cascade = CascadeType.ALL)
+    private List<StockEntity> stocks;
+
     @ManyToOne
     @JoinColumn(name = "product_type_name")
     private ProductTypeEntity productType;
 
-    @ManyToOne
-    @JoinColumn(name = "stock_id")
-    private StockEntity stock;
-
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "cloth_photo",
             joinColumns = @JoinColumn(name = "cloth_id"),

@@ -1,24 +1,24 @@
 package org.al36.favorite.productws.service;
 
-import org.al36.favorite.productws.dto.ClothDTO;
+import org.al36.favorite.productws.dto.ClothFullDTO;
 import org.al36.favorite.productws.dto.ProductTypeDTO;
 
 import java.util.List;
 
 public interface ClothService {
 
-    List<ClothDTO> getAllClothes();
+    List<ClothFullDTO> getAllClothes();
 
-    List<ClothDTO> getAllAvailableClothes();
+    List<ClothFullDTO> getAllAvailableClothes();
 
-    ClothDTO getClotheById(Integer id);
+    ClothFullDTO getClotheById(Integer id);
 
-    ClothDTO getClothByReference(String reference);
+    ClothFullDTO getClothByReference(String reference);
 
-    List<ClothDTO> getAllClothesByProductType(ProductTypeDTO productTypeDTO);
+    List<ClothFullDTO> getAllClothesByProductType(ProductTypeDTO productTypeDTO);
 
-    ClothDTO saveCloth(ClothDTO clothDTO);
+    ClothFullDTO saveCloth(ClothFullDTO clothDTO);
 
-    ClothDTO deleteClothById(Integer id);
+    ClothFullDTO deleteClothById(Integer id);
 
 }

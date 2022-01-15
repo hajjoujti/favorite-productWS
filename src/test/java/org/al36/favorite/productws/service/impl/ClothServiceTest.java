@@ -1,6 +1,7 @@
 package org.al36.favorite.productws.service.impl;
 
 import org.al36.favorite.productws.dto.ClothDTO;
+import org.al36.favorite.productws.dto.ClothFullDTO;
 import org.al36.favorite.productws.entity.ClothEntity;
 import org.al36.favorite.productws.repository.ClothRepository;
 import org.al36.favorite.productws.service.ClothService;
@@ -136,8 +137,8 @@ class ClothServiceTest {
 
         when(clothRepository.save(clothEntity3)).thenReturn(fakeEntity.clothEntity2);
 
-        ClothDTO input = entityConverter.toClothDTO(fakeEntity.clothEntity2);
-        ClothDTO output = clothService.saveCloth(entityConverter.toClothDTO(clothEntity3));
+        ClothFullDTO input = entityConverter.toClothFullDTO(fakeEntity.clothEntity2);
+        ClothFullDTO output = clothService.saveCloth(entityConverter.toClothFullDTO(clothEntity3));
 
         assertThat(input).usingRecursiveComparison().isEqualTo(output);
 
@@ -153,8 +154,8 @@ class ClothServiceTest {
 
         when(clothRepository.save(clothEntity3)).thenReturn(clothEntity4);
 
-        ClothDTO input = entityConverter.toClothDTO(clothEntity3);
-        ClothDTO output = clothService.saveCloth(entityConverter.toClothDTO(clothEntity4));
+        ClothFullDTO input = entityConverter.toClothFullDTO(clothEntity3);
+        ClothFullDTO output = clothService.saveCloth(entityConverter.toClothFullDTO(clothEntity4));
 
         assertThat(input).usingRecursiveComparison().isEqualTo(output);
 

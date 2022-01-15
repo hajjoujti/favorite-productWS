@@ -1,6 +1,6 @@
 package org.al36.favorite.productws.rest;
 
-import org.al36.favorite.productws.dto.ClothDTO;
+import org.al36.favorite.productws.dto.ClothFullDTO;
 import org.al36.favorite.productws.dto.ProductTypeDTO;
 import org.al36.favorite.productws.rest.message.GenericMessage;
 import org.al36.favorite.productws.rest.message.ResponseMessage;
@@ -35,35 +35,35 @@ public class ProductRestController {
 
     @RequestMapping("/clothes")
     public ResponseEntity<Object> getAllClothes() {
-        List<ClothDTO> clothDTOS = clothService.getAllClothes();
-        if(clothDTOS.isEmpty()) {
+        List<ClothFullDTO> clothFullDTOS = clothService.getAllClothes();
+        if(clothFullDTOS.isEmpty()) {
             return new ResponseEntity<>(
                     new GenericMessage(HttpStatus.NOT_FOUND.toString(), ResponseMessage.CLOTHES_NOT_FOUND.toString()),
                     HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(clothDTOS, HttpStatus.OK);
+        return new ResponseEntity<>(clothFullDTOS, HttpStatus.OK);
     }
 
     @RequestMapping("/clothes/available")
     public ResponseEntity<Object> getAllAvailableClothes() {
-        List<ClothDTO> clothDTOS = clothService.getAllAvailableClothes();
-        if(clothDTOS.isEmpty()) {
+        List<ClothFullDTO> clothFullDTOS = clothService.getAllAvailableClothes();
+        if(clothFullDTOS.isEmpty()) {
             return new ResponseEntity<>(new GenericMessage(HttpStatus.NOT_FOUND.toString(),
                                                            ResponseMessage.AVAILABLE_CLOTHES_NOT_FOUND.toString()),
                                         HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(clothDTOS, HttpStatus.OK);
+        return new ResponseEntity<>(clothFullDTOS, HttpStatus.OK);
     }
 
     @RequestMapping("/clothes/{clothId}")
     public ResponseEntity<Object> getClotheById(@PathVariable Integer clothId) {
-        ClothDTO clothDTO = clothService.getClotheById(clothId);
-        if(clothDTO == null) {
+        ClothFullDTO clothFullDTO = clothService.getClotheById(clothId);
+        if(clothFullDTO == null) {
             return new ResponseEntity<>(
                     new GenericMessage(HttpStatus.NOT_FOUND.toString(), ResponseMessage.NOT_FOUND.toString()),
                     HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(clothDTO, HttpStatus.OK);
+        return new ResponseEntity<>(clothFullDTO, HttpStatus.OK);
     }
 
     @RequestMapping("/clothes/product-types/{productTypeName}")
@@ -75,36 +75,37 @@ public class ProductRestController {
                                         HttpStatus.NOT_FOUND);
         }
 
-        List<ClothDTO> clothDTOS = clothService.getAllClothesByProductType(productTypeDTO);
-        if(clothDTOS.isEmpty()) {
+        List<ClothFullDTO> clothFullDTOS = clothService.getAllClothesByProductType(productTypeDTO);
+        if(clothFullDTOS.isEmpty()) {
             return new ResponseEntity<>(
-                    new GenericMessage(HttpStatus.NOT_FOUND.toString(), ResponseMessage.NOT_FOUND.toString()),
+                    new GenericMessage(HttpStatus.NOT_FOUND.toString(),
+                                       ResponseMessage.CLOTHES_PRODUCT_TYPE_NOT_FOUND.toString()),
                     HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(clothDTOS, HttpStatus.OK);
+        return new ResponseEntity<>(clothFullDTOS, HttpStatus.OK);
     }
 
     @PostMapping("/clothes")
-    public ResponseEntity<GenericMessage> postCloth(@RequestBody ClothDTO clothDTO) {
-        if(clothService.getClothByReference(clothDTO.getReference()) != null) {
+    public ResponseEntity<GenericMessage> postCloth(@RequestBody ClothFullDTO clothFullDTO) {
+        if(clothService.getClothByReference(clothFullDTO.getReference()) != null) {
             return new ResponseEntity<>(new GenericMessage(HttpStatus.CONFLICT.toString(),
                                                            ResponseMessage.SAME_REFERENCE_CONFLICT.toString()),
                                         HttpStatus.CONFLICT);
         }
-        clothService.saveCloth(clothDTO);
+        clothService.saveCloth(clothFullDTO);
         return new ResponseEntity<>(new GenericMessage(HttpStatus.CREATED.toString(),
                                                        ResponseMessage.CLOTH_CREATED.toString()),
                                     HttpStatus.CREATED);
     }
 
     @PutMapping("/clothes")
-    public ResponseEntity<Object> updateCloth(@RequestBody ClothDTO clothDTO) {
-        if(clothService.getClotheById(clothDTO.getId()) == null) {
+    public ResponseEntity<Object> updateCloth(@RequestBody ClothFullDTO clothFullDTO) {
+        if(clothService.getClotheById(clothFullDTO.getId()) == null) {
             return new ResponseEntity<>(new GenericMessage(HttpStatus.NOT_FOUND.toString(),
                                                            ResponseMessage.CLOTH_UPDATE_NOT_FOUND.toString()),
                                         HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(clothService.saveCloth(clothDTO), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(clothService.saveCloth(clothFullDTO), HttpStatus.OK);
     }
 
     @DeleteMapping("/clothes/{clothId}")
@@ -116,8 +117,8 @@ public class ProductRestController {
         }
         clothService.deleteClothById(clothId);
         return new ResponseEntity<>(
-                new GenericMessage(HttpStatus.NO_CONTENT.toString(), ResponseMessage.CLOTH_DELETED.toString()),
-                HttpStatus.NO_CONTENT);
+                new GenericMessage(HttpStatus.OK.toString(), ResponseMessage.CLOTH_DELETED.toString()),
+                HttpStatus.OK);
     }
 
 }

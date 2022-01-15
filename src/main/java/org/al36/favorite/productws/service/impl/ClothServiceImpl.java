@@ -1,6 +1,6 @@
 package org.al36.favorite.productws.service.impl;
 
-import org.al36.favorite.productws.dto.ClothDTO;
+import org.al36.favorite.productws.dto.ClothFullDTO;
 import org.al36.favorite.productws.dto.ProductTypeDTO;
 import org.al36.favorite.productws.entity.ClothEntity;
 import org.al36.favorite.productws.repository.ClothRepository;
@@ -34,51 +34,51 @@ public class ClothServiceImpl implements ClothService {
     }
 
     @Override
-    public List<ClothDTO> getAllClothes() {
-        List<ClothDTO> clothDTOS = new ArrayList<>();
-        clothRepository.findAll().forEach(cloth -> clothDTOS.add(entityConverter.toClothDTO(cloth)));
-        return clothDTOS;
+    public List<ClothFullDTO> getAllClothes() {
+        List<ClothFullDTO> clothFullDTOS = new ArrayList<>();
+        clothRepository.findAll().forEach(cloth -> clothFullDTOS.add(entityConverter.toClothFullDTO(cloth)));
+        return clothFullDTOS;
     }
 
     @Override
-    public List<ClothDTO> getAllAvailableClothes() {
-        List<ClothDTO> clothsDTOS = new ArrayList<>();
+    public List<ClothFullDTO> getAllAvailableClothes() {
+        List<ClothFullDTO> clothFullDTOS = new ArrayList<>();
         clothRepository.findByRefDeletionDateIsNull().forEach(
-                cloth -> clothsDTOS.add(entityConverter.toClothDTO(cloth)));
-        return clothsDTOS;
+                cloth -> clothFullDTOS.add(entityConverter.toClothFullDTO(cloth)));
+        return clothFullDTOS;
     }
 
     @Override
-    public ClothDTO getClotheById(Integer id) {
+    public ClothFullDTO getClotheById(Integer id) {
         Optional<ClothEntity> clothEntity = clothRepository.findById(id);
-        return clothEntity.map(entityConverter::toClothDTO).orElse(null);
+        return clothEntity.map(entityConverter::toClothFullDTO).orElse(null);
     }
 
     @Override
-    public ClothDTO getClothByReference(String reference) {
+    public ClothFullDTO getClothByReference(String reference) {
         Optional<ClothEntity> clothEntity = clothRepository.findByReference(reference);
-        return clothEntity.map(entityConverter::toClothDTO).orElse(null);
+        return clothEntity.map(entityConverter::toClothFullDTO).orElse(null);
     }
 
     @Override
-    public List<ClothDTO> getAllClothesByProductType(ProductTypeDTO productTypeDTO) {
-        List<ClothDTO> clothsDTOS = new ArrayList<>();
+    public List<ClothFullDTO> getAllClothesByProductType(ProductTypeDTO productTypeDTO) {
+        List<ClothFullDTO> clothFullDTOS = new ArrayList<>();
         clothRepository.findByRefDeletionDateIsNullAndProductType(dtoConverter.toProductTypeEntity(productTypeDTO))
-                       .forEach(cloth -> clothsDTOS.add(entityConverter.toClothDTO(cloth)));
-        return clothsDTOS;
+                       .forEach(cloth -> clothFullDTOS.add(entityConverter.toClothFullDTO(cloth)));
+        return clothFullDTOS;
     }
 
     @Override
-    public ClothDTO saveCloth(ClothDTO clothDTO) {
-        ClothEntity clothEntity = clothRepository.save(dtoConverter.ClothEntity(clothDTO));
-        return entityConverter.toClothDTO(clothEntity);
+    public ClothFullDTO saveCloth(ClothFullDTO clothDTO) {
+        ClothEntity clothEntity = clothRepository.save(dtoConverter.toClothEntity(clothDTO));
+        return entityConverter.toClothFullDTO(clothEntity);
     }
 
     @Override
-    public ClothDTO deleteClothById(Integer id) {
-        ClothDTO clothDTO = getClotheById(id);
-        clothDTO.setRefDeletionDate(LocalDateTime.now());
-        return saveCloth(clothDTO);
+    public ClothFullDTO deleteClothById(Integer id) {
+        ClothFullDTO clothFullDTO = getClotheById(id);
+        clothFullDTO.setRefDeletionDate(LocalDateTime.now());
+        return saveCloth(clothFullDTO);
     }
 
 }

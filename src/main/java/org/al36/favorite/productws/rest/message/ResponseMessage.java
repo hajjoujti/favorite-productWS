@@ -12,7 +12,11 @@ public enum ResponseMessage {
     CLOTH_DELETE_NOT_FOUND("The cloth you are trying updating does not exist!"),
     CLOTH_DELETED("The cloth has been successfully deleted!"),
     CLOTH_CREATED("The cloth has been successfully created"),
-    CLOTHES_PRODUCT_TYPE_NOT_FOUND("There are no clothes having the requested type in the database!");
+    CLOTHES_PRODUCT_TYPE_NOT_FOUND("There are no clothes having the requested type in the database!"),
+    PRODUCT_TYPES_NOT_FOUND("There are no product types in the database!"),
+    DESIGNS_NOT_FOUND("There are no designs in the database!"),
+    CLOTH_NOT_FOUND("The cloth you are requesting does not exist!"),
+    DESIGN_NOT_FOUND("The design you are requesting does not exist!");
 
     private final String message;
 

@@ -1,15 +1,13 @@
 package org.al36.favorite.productws.service;
 
-import org.al36.favorite.productws.dto.DesignDTO;
+import org.al36.favorite.productws.dto.DesignFullDTO;
 
 import java.util.List;
 
 public interface DesignService {
 
-    List<DesignDTO> getAllDesigns();
+    List<DesignFullDTO> getAllDesigns();
 
-    DesignDTO getDesignById(Integer id);
-
-    DesignDTO postDesign(DesignDTO design);
+    DesignFullDTO getDesignById(Integer id);
 
 }

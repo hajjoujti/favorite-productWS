@@ -1,6 +1,5 @@
 package org.al36.favorite.productws.service.impl;
 
-import org.al36.favorite.productws.dto.ClothDTO;
 import org.al36.favorite.productws.dto.ClothFullDTO;
 import org.al36.favorite.productws.entity.ClothEntity;
 import org.al36.favorite.productws.repository.ClothRepository;
@@ -40,7 +39,7 @@ class ClothServiceTest {
 
     private final ClothService clothService = new ClothServiceImpl(entityConverter, dtoConverter, clothRepository);
 
-    FakeEntity fakeEntity;
+    private FakeEntity fakeEntity;
 
     @BeforeEach
     void init() {
@@ -53,9 +52,9 @@ class ClothServiceTest {
 
         assertEquals(2, clothService.getAllClothes().size());
 
-        List<ClothDTO> clothDTOS = new ArrayList<>();
-        fakeEntity.clothEntities.forEach(cloth -> clothDTOS.add(entityConverter.toClothDTO(cloth)));
-        assertThat(clothDTOS).usingRecursiveComparison().isEqualTo(clothService.getAllClothes());
+        List<ClothFullDTO> clothFullDTO = new ArrayList<>();
+        fakeEntity.clothEntities.forEach(cloth -> clothFullDTO.add(entityConverter.toClothFullDTO(cloth)));
+        assertThat(clothFullDTO).usingRecursiveComparison().isEqualTo(clothService.getAllClothes());
 
         verify(clothRepository, times(2)).findAll();
     }
@@ -66,9 +65,9 @@ class ClothServiceTest {
 
         assertEquals(1, clothService.getAllAvailableClothes().size());
 
-        List<ClothDTO> availableClothDTOS = new ArrayList<>();
+        List<ClothFullDTO> availableClothDTOS = new ArrayList<>();
         List.of(fakeEntity.clothEntity1).forEach(
-                cloth -> availableClothDTOS.add(entityConverter.toClothDTO(cloth)));
+                cloth -> availableClothDTOS.add(entityConverter.toClothFullDTO(cloth)));
         assertThat(availableClothDTOS).usingRecursiveComparison().isEqualTo(clothService.getAllAvailableClothes());
 
         verify(clothRepository, times(2)).findByRefDeletionDateIsNull();
@@ -79,7 +78,7 @@ class ClothServiceTest {
     void shouldGetClotheById() {
         when(clothRepository.findById(1)).thenReturn(Optional.ofNullable(fakeEntity.clothEntity1));
 
-        assertThat(entityConverter.toClothDTO(fakeEntity.clothEntity1)).usingRecursiveComparison().isEqualTo(
+        assertThat(entityConverter.toClothFullDTO(fakeEntity.clothEntity1)).usingRecursiveComparison().isEqualTo(
                 clothService.getClotheById(1));
 
         assertNotNull(clothService.getClotheById(1));
@@ -96,7 +95,7 @@ class ClothServiceTest {
         when(clothRepository.findByReference("bluePants")).thenReturn(
                 Optional.ofNullable(fakeEntity.clothEntity1));
 
-        assertThat(entityConverter.toClothDTO(fakeEntity.clothEntity1)).usingRecursiveComparison().isEqualTo(
+        assertThat(entityConverter.toClothFullDTO(fakeEntity.clothEntity1)).usingRecursiveComparison().isEqualTo(
                 clothService.getClothByReference("bluePants"));
 
         assertNotNull(clothService.getClothByReference("bluePants"));
@@ -118,10 +117,10 @@ class ClothServiceTest {
                                             entityConverter.toProductTypeDTO(fakeEntity.productTypeEntity1))
                                     .size());
 
-        List<ClothDTO> availableClothDTOS = new ArrayList<>();
+        List<ClothFullDTO> availableClothFullDTOS = new ArrayList<>();
         List.of(fakeEntity.clothEntity1).forEach(
-                cloth -> availableClothDTOS.add(entityConverter.toClothDTO(cloth)));
-        assertThat(availableClothDTOS).usingRecursiveComparison().isEqualTo(
+                cloth -> availableClothFullDTOS.add(entityConverter.toClothFullDTO(cloth)));
+        assertThat(availableClothFullDTOS).usingRecursiveComparison().isEqualTo(
                 clothService.getAllClothesByProductType(
                         entityConverter.toProductTypeDTO(fakeEntity.productTypeEntity1)));
 
@@ -171,7 +170,7 @@ class ClothServiceTest {
         output.setRefDeletionDate(LocalDateTime.now());
         when(clothRepository.save(input)).thenReturn(output);
 
-        assertThat(entityConverter.toClothDTO(output)).usingRecursiveComparison().isEqualTo(
+        assertThat(entityConverter.toClothFullDTO(output)).usingRecursiveComparison().isEqualTo(
                 clothService.deleteClothById(1));
 
         verify(clothRepository, times(3)).findById(1);

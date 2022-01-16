@@ -2,8 +2,8 @@ package org.al36.favorite.productws.rest.controller;
 
 import org.al36.favorite.productws.dto.DesignFullDTO;
 import org.al36.favorite.productws.rest.DesignRestOperations;
+import org.al36.favorite.productws.rest.message.DesignResponseMessage;
 import org.al36.favorite.productws.rest.message.GenericMessage;
-import org.al36.favorite.productws.rest.message.ResponseMessage;
 import org.al36.favorite.productws.service.DesignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,7 @@ public class DesignRestController implements DesignRestOperations {
         if(designFullDTOS.isEmpty()) {
             return new ResponseEntity<>(
                     new GenericMessage(HttpStatus.NOT_FOUND.toString(),
-                                       ResponseMessage.DESIGNS_NOT_FOUND.toString()),
+                                       DesignResponseMessage.DESIGNS_NOT_FOUND.toString()),
                     HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(designFullDTOS, HttpStatus.OK);
@@ -37,9 +37,9 @@ public class DesignRestController implements DesignRestOperations {
     @Override
     public ResponseEntity<Object> getDesignById(Integer id) {
         DesignFullDTO designFullDTO = designService.getDesignById(id);
-        if(designFullDTO== null){
+        if(designFullDTO == null) {
             return new ResponseEntity<>(
-                    new GenericMessage(HttpStatus.NOT_FOUND.toString(), ResponseMessage.DESIGN_NOT_FOUND.toString()),
+                    new GenericMessage(HttpStatus.NOT_FOUND.toString(), DesignResponseMessage.DESIGN_NOT_FOUND.toString()),
                     HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(designFullDTO, HttpStatus.OK);

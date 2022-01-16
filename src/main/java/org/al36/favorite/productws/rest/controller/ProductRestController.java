@@ -4,7 +4,8 @@ import org.al36.favorite.productws.dto.ClothFullDTO;
 import org.al36.favorite.productws.dto.ProductTypeDTO;
 import org.al36.favorite.productws.rest.ProductRestOperations;
 import org.al36.favorite.productws.rest.message.GenericMessage;
-import org.al36.favorite.productws.rest.message.ResponseMessage;
+import org.al36.favorite.productws.rest.message.ProductTypeResponseMessage;
+import org.al36.favorite.productws.rest.message.ProductResponseMessage;
 import org.al36.favorite.productws.service.ClothService;
 import org.al36.favorite.productws.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class ProductRestController implements ProductRestOperations {
         clothFullDTOS = clothService.getAllClothes();
         if(clothFullDTOS.isEmpty()) {
             return new ResponseEntity<>(
-                    new GenericMessage(HttpStatus.NOT_FOUND.toString(), ResponseMessage.CLOTHES_NOT_FOUND.toString()),
+                    new GenericMessage(HttpStatus.NOT_FOUND.toString(), ProductResponseMessage.CLOTHES_NOT_FOUND.toString()),
                     HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(clothFullDTOS, HttpStatus.OK);
@@ -46,7 +47,7 @@ public class ProductRestController implements ProductRestOperations {
         clothFullDTOS = clothService.getAllAvailableClothes();
         if(clothFullDTOS.isEmpty()) {
             return new ResponseEntity<>(new GenericMessage(HttpStatus.NOT_FOUND.toString(),
-                                                           ResponseMessage.AVAILABLE_CLOTHES_NOT_FOUND.toString()),
+                                                           ProductResponseMessage.AVAILABLE_CLOTHES_NOT_FOUND.toString()),
                                         HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(clothFullDTOS, HttpStatus.OK);
@@ -57,7 +58,7 @@ public class ProductRestController implements ProductRestOperations {
         ClothFullDTO clothFullDTO = clothService.getClotheById(clothId);
         if(clothFullDTO == null) {
             return new ResponseEntity<>(
-                    new GenericMessage(HttpStatus.NOT_FOUND.toString(), ResponseMessage.CLOTH_NOT_FOUND.toString()),
+                    new GenericMessage(HttpStatus.NOT_FOUND.toString(), ProductResponseMessage.CLOTH_NOT_FOUND.toString()),
                     HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(clothFullDTO, HttpStatus.OK);
@@ -68,7 +69,7 @@ public class ProductRestController implements ProductRestOperations {
         ProductTypeDTO productTypeDTO = productTypeService.getProductTypeByName(productTypeName);
         if(productTypeDTO == null) {
             return new ResponseEntity<>(new GenericMessage(HttpStatus.NOT_FOUND.toString(),
-                                                           ResponseMessage.PRODUCT_TYPE_NOT_FOUND.toString()),
+                                                           ProductTypeResponseMessage.PRODUCT_TYPE_NOT_FOUND.toString()),
                                         HttpStatus.NOT_FOUND);
         }
 
@@ -76,7 +77,7 @@ public class ProductRestController implements ProductRestOperations {
         if(clothFullDTOS.isEmpty()) {
             return new ResponseEntity<>(
                     new GenericMessage(HttpStatus.NOT_FOUND.toString(),
-                                       ResponseMessage.CLOTHES_PRODUCT_TYPE_NOT_FOUND.toString()),
+                                       ProductResponseMessage.CLOTHES_PRODUCT_TYPE_NOT_FOUND.toString()),
                     HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(clothFullDTOS, HttpStatus.OK);
@@ -86,12 +87,12 @@ public class ProductRestController implements ProductRestOperations {
     public ResponseEntity<GenericMessage> postCloth(ClothFullDTO clothFullDTO) {
         if(clothService.getClothByReference(clothFullDTO.getReference()) != null) {
             return new ResponseEntity<>(new GenericMessage(HttpStatus.CONFLICT.toString(),
-                                                           ResponseMessage.SAME_REFERENCE_CONFLICT.toString()),
+                                                           ProductResponseMessage.SAME_REFERENCE_CONFLICT.toString()),
                                         HttpStatus.CONFLICT);
         }
         clothService.saveCloth(clothFullDTO);
         return new ResponseEntity<>(new GenericMessage(HttpStatus.CREATED.toString(),
-                                                       ResponseMessage.CLOTH_CREATED.toString()),
+                                                       ProductResponseMessage.CLOTH_CREATED.toString()),
                                     HttpStatus.CREATED);
     }
 
@@ -99,7 +100,7 @@ public class ProductRestController implements ProductRestOperations {
     public ResponseEntity<Object> updateCloth(ClothFullDTO clothFullDTO) {
         if(clothService.getClotheById(clothFullDTO.getId()) == null) {
             return new ResponseEntity<>(new GenericMessage(HttpStatus.NOT_FOUND.toString(),
-                                                           ResponseMessage.CLOTH_UPDATE_NOT_FOUND.toString()),
+                                                           ProductResponseMessage.CLOTH_UPDATE_NOT_FOUND.toString()),
                                         HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(clothService.saveCloth(clothFullDTO), HttpStatus.OK);
@@ -109,12 +110,12 @@ public class ProductRestController implements ProductRestOperations {
     public ResponseEntity<GenericMessage> deleteCloth(Integer clothId) {
         if(clothService.getClotheById(clothId) == null) {
             return new ResponseEntity<>(new GenericMessage(HttpStatus.NOT_FOUND.toString(),
-                                                           ResponseMessage.CLOTH_DELETE_NOT_FOUND.toString()),
+                                                           ProductResponseMessage.CLOTH_DELETE_NOT_FOUND.toString()),
                                         HttpStatus.NOT_FOUND);
         }
         clothService.deleteClothById(clothId);
         return new ResponseEntity<>(
-                new GenericMessage(HttpStatus.OK.toString(), ResponseMessage.CLOTH_DELETED.toString()),
+                new GenericMessage(HttpStatus.OK.toString(), ProductResponseMessage.CLOTH_DELETED.toString()),
                 HttpStatus.OK);
     }
 

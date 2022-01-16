@@ -3,6 +3,7 @@ package org.al36.favorite.productws.utils;
 import org.al36.favorite.productws.dto.ClothDTO;
 import org.al36.favorite.productws.dto.ClothFullDTO;
 import org.al36.favorite.productws.dto.DesignDTO;
+import org.al36.favorite.productws.dto.DesignFullDTO;
 import org.al36.favorite.productws.dto.DesignTypeDTO;
 import org.al36.favorite.productws.dto.LocationDTO;
 import org.al36.favorite.productws.dto.PhotoDTO;
@@ -32,6 +33,8 @@ public interface EntityConverter {
     DesignDTO toDesignDTO(DesignEntity designEntity);
 
     DesignTypeDTO toDesignTypeDTO(DesignTypeEntity designTypeEntity);
+
+    DesignFullDTO toDesignFullDTO(DesignEntity designType);
 
     LocationDTO toLocationDTO(LocationEntity locationEntity);
 

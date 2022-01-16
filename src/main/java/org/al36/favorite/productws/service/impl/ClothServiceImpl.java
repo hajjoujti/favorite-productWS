@@ -25,6 +25,8 @@ public class ClothServiceImpl implements ClothService {
 
     private final ClothRepository clothRepository;
 
+    private List<ClothFullDTO> clothFullDTOS;
+
     public ClothServiceImpl(EntityConverter entityConverter,
                             DTOConverter dtoConverter,
                             ClothRepository clothRepository) {
@@ -35,14 +37,14 @@ public class ClothServiceImpl implements ClothService {
 
     @Override
     public List<ClothFullDTO> getAllClothes() {
-        List<ClothFullDTO> clothFullDTOS = new ArrayList<>();
+        clothFullDTOS = new ArrayList<>();
         clothRepository.findAll().forEach(cloth -> clothFullDTOS.add(entityConverter.toClothFullDTO(cloth)));
         return clothFullDTOS;
     }
 
     @Override
     public List<ClothFullDTO> getAllAvailableClothes() {
-        List<ClothFullDTO> clothFullDTOS = new ArrayList<>();
+        clothFullDTOS = new ArrayList<>();
         clothRepository.findByRefDeletionDateIsNull().forEach(
                 cloth -> clothFullDTOS.add(entityConverter.toClothFullDTO(cloth)));
         return clothFullDTOS;
@@ -62,7 +64,7 @@ public class ClothServiceImpl implements ClothService {
 
     @Override
     public List<ClothFullDTO> getAllClothesByProductType(ProductTypeDTO productTypeDTO) {
-        List<ClothFullDTO> clothFullDTOS = new ArrayList<>();
+        clothFullDTOS = new ArrayList<>();
         clothRepository.findByRefDeletionDateIsNullAndProductType(dtoConverter.toProductTypeEntity(productTypeDTO))
                        .forEach(cloth -> clothFullDTOS.add(entityConverter.toClothFullDTO(cloth)));
         return clothFullDTOS;

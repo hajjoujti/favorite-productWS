@@ -18,7 +18,7 @@ public class ProductTypeDTO implements Serializable {
 
     private String name;
 
-    private List<ClothDTO> cloths;
+    private List<ClothDTO> clothes;
 
     private List<LocationDTO> locations;
 

@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "design_type")
 @NoArgsConstructor
@@ -25,5 +26,18 @@ public class DesignTypeEntity {
 
     @OneToMany(mappedBy = "designType", cascade = CascadeType.ALL)
     private List<DesignEntity> designs;
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        DesignTypeEntity that = (DesignTypeEntity) o;
+        return Objects.equals(label, that.label);
+    }
+
+    @Override
+    public int hashCode() {
+        return 15;
+    }
 
 }

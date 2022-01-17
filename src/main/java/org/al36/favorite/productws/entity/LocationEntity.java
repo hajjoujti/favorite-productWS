@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "location")
 @NoArgsConstructor
@@ -30,6 +31,19 @@ public class LocationEntity {
             joinColumns = @JoinColumn(name = "location_label"),
             inverseJoinColumns = @JoinColumn(name = "product_type_name"))
     private List<ProductTypeEntity> productTypes;
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        LocationEntity that = (LocationEntity) o;
+        return Objects.equals(label, that.label);
+    }
+
+    @Override
+    public int hashCode() {
+        return 20;
+    }
 
 }
 

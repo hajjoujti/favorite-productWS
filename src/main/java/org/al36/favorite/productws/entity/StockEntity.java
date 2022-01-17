@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.util.Objects;
 
 @Entity(name = "stock")
 @NoArgsConstructor
@@ -36,5 +37,18 @@ public class StockEntity {
     @ManyToOne
     @JoinColumn(name = "size_label")
     private SizeEntity size;
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        StockEntity that = (StockEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 40;
+    }
 
 }

@@ -41,7 +41,7 @@ public class ProductTypeEntity {
 
     @Override
     public int hashCode() {
-        return 0;
+        return 30;
     }
 
 }

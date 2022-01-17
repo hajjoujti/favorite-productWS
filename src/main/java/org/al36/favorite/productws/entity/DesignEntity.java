@@ -17,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "design")
 @NoArgsConstructor
@@ -49,5 +50,18 @@ public class DesignEntity {
             joinColumns = @JoinColumn(name = "design_id"),
             inverseJoinColumns = @JoinColumn(name = "photo_id"))
     private List<PhotoEntity> photos;
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        DesignEntity that = (DesignEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 10;
+    }
 
 }

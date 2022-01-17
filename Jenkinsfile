@@ -48,9 +48,11 @@ pipeline {
         
         stage('SSH transfer') {
             steps {
-                echo "*********************SSH TRANSFER*********************"
-                sh 'scp -v -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/favorite-productWS/Dockerfile vagrant@192.168.33.20:/home/vagrant/'
-                sh 'scp -v -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/favorite-productWS/target/*.jar vagrant@192.168.33.20:/home/vagrant/'
+                withCredentials([sshUserPrivateKey(credentialsId: '2631e1d0-85aa-40f1-a410-57f03f11fe86', keyFileVariable: 'SSH_KEY_FOR_FAVORITE'){
+                    echo "*********************SSH TRANSFER*********************"
+                    sh 'scp -v -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/favorite-productWS/Dockerfile vagrant@192.168.33.20:/home/vagrant/'
+                    sh 'scp -v -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/favorite-productWS/target/*.jar vagrant@192.168.33.20:/home/vagrant/'
+                }
             }
         }
 

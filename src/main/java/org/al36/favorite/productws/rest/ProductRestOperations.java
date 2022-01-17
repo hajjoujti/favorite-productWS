@@ -2,7 +2,6 @@ package org.al36.favorite.productws.rest;
 
 import org.al36.favorite.productws.dto.ClothFullDTO;
 import org.al36.favorite.productws.rest.message.GenericMessage;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,25 +11,25 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/clothes")
+@RequestMapping(value = "/clothes")
 public interface ProductRestOperations {
 
-    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping
     ResponseEntity<Object> getAllClothes();
 
-    @GetMapping(value = "/available", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/available")
     ResponseEntity<Object> getAllAvailableClothes();
 
-    @GetMapping(value = "/{clothId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{clothId}")
     ResponseEntity<Object> getClotheById(@PathVariable Integer clothId);
 
-    @GetMapping(value = "/product-types/{productTypeName}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/product-types/{productTypeName}")
     ResponseEntity<Object> getAllClothesByProductType(@PathVariable String productTypeName);
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     ResponseEntity<GenericMessage> postCloth(@RequestBody ClothFullDTO clothFullDTO);
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping
     ResponseEntity<Object> updateCloth(@RequestBody ClothFullDTO clothFullDTO);
 
     @DeleteMapping("/{clothId}")

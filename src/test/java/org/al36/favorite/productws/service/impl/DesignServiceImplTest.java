@@ -10,6 +10,8 @@ import org.al36.favorite.productws.utils.EntityConverter;
 import org.al36.favorite.productws.utils.EntityConverterImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@RunWith(SpringRunner.class)
 class DesignServiceImplTest {
 
     private final EntityConverter entityConverter = new EntityConverterImpl();

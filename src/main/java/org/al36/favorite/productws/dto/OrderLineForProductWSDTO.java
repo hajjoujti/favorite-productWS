@@ -19,9 +19,9 @@ public class OrderLineForProductWSDTO implements Serializable {
 
     private static final long serialVersionUID = -6993562921572199995L;
 
-    private ClothDTO cloth;
+    private ClothWithoutStocksAndPhotosDTO cloth;
 
-    private SizeDTO size;
+    private SizeWithoutStocksDTO size;
 
     private Integer quantity;
 

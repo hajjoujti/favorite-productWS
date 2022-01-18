@@ -1,8 +1,8 @@
 package org.al36.favorite.productws.service.impl;
 
-import org.al36.favorite.productws.dto.ClothDTO;
+import org.al36.favorite.productws.dto.ClothWithoutStocksAndPhotosDTO;
 import org.al36.favorite.productws.dto.OrderLineForProductWSDTO;
-import org.al36.favorite.productws.dto.SizeDTO;
+import org.al36.favorite.productws.dto.SizeWithoutStocksDTO;
 import org.al36.favorite.productws.dto.StockFullDTO;
 import org.al36.favorite.productws.entity.StockEntity;
 import org.al36.favorite.productws.repository.StockRepository;
@@ -35,9 +35,10 @@ public class StockServiceImpl implements StockService {
 
 
     @Override
-    public StockFullDTO getStockByClothAndSize(ClothDTO clothDTO, SizeDTO sizeDTO) {
-        StockEntity stockEntity = stockRepository.findByClothAndSize(dtoConverter.toClothEntity(clothDTO),
-                                                                     dtoConverter.toSizeEntity(sizeDTO))
+    public StockFullDTO getStockByClothAndSize(ClothWithoutStocksAndPhotosDTO clothWithoutStocksAndPhotosDTO,
+                                               SizeWithoutStocksDTO sizeWithoutStocksDTO) {
+        StockEntity stockEntity = stockRepository.findByClothAndSize(dtoConverter.toClothEntity(clothWithoutStocksAndPhotosDTO),
+                                                                     dtoConverter.toSizeEntity(sizeWithoutStocksDTO))
                                                  .orElse(null);
         return entityConverter.toStockFullDTO(stockEntity);
     }

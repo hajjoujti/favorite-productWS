@@ -16,6 +16,8 @@ import java.util.List;
 @Builder
 public class DesignFullDTO implements Serializable {
 
+    private static final long serialVersionUID = -7816855297925232855L;
+
     private Integer id;
 
     private String name;

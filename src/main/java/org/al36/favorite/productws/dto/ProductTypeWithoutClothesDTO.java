@@ -16,6 +16,8 @@ import java.util.List;
 @Builder
 public class ProductTypeWithoutClothesDTO implements Serializable {
 
+    private static final long serialVersionUID = -1649192758431878006L;
+
     private String name;
 
     private List<LocationDTO> locations;

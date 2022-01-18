@@ -16,6 +16,8 @@ import java.util.List;
 @Builder
 public class ProductTypeDTO implements Serializable {
 
+    private static final long serialVersionUID = 6259729076248991549L;
+
     private String name;
 
     private List<ClothDTO> clothes;

@@ -15,6 +15,8 @@ import java.io.Serializable;
 @Builder
 public class SizeWithoutStocksDTO implements Serializable {
 
+    private static final long serialVersionUID = -6201263367474235149L;
+
     private String label;
 
 }

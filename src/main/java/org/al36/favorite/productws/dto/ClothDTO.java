@@ -17,6 +17,8 @@ import java.util.List;
 @Builder
 public class ClothDTO implements Serializable {
 
+    private static final long serialVersionUID = 3363984318748144522L;
+
     private Integer id;
 
     private String reference;

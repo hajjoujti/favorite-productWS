@@ -15,6 +15,8 @@ import java.io.Serializable;
 @Builder
 public class DesignTypeWithoutDesignDTO implements Serializable {
 
+    private static final long serialVersionUID = 1067570493988830506L;
+
     private String label;
 
 }

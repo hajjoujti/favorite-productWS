@@ -16,6 +16,8 @@ import java.util.List;
 @Builder
 public class SizeDTO implements Serializable {
 
+    private static final long serialVersionUID = 5959195615151727682L;
+
     private String label;
 
     private List<StockDTO> stocks;

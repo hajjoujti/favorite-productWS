@@ -15,6 +15,8 @@ import java.io.Serializable;
 @Builder
 public class LocationDTO implements Serializable {
 
+    private static final long serialVersionUID = -1930174458352844863L;
+
     private String label;
 
 }

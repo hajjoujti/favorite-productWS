@@ -15,6 +15,8 @@ import java.io.Serializable;
 @Builder
 public class StockDTO implements Serializable {
 
+    private static final long serialVersionUID = 5282356533722401153L;
+
     private Integer id;
 
     private Integer quantity;

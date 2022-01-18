@@ -2,6 +2,7 @@ package org.al36.favorite.productws.utils;
 
 import org.al36.favorite.productws.dto.ClothDTO;
 import org.al36.favorite.productws.dto.ClothFullDTO;
+import org.al36.favorite.productws.dto.ClothWithoutStocksAndPhotosDTO;
 import org.al36.favorite.productws.dto.DesignDTO;
 import org.al36.favorite.productws.dto.DesignFullDTO;
 import org.al36.favorite.productws.dto.DesignTypeDTO;
@@ -30,6 +31,7 @@ public interface EntityConverter {
     ClothDTO toClothDTO(ClothEntity clothEntity);
 
     ClothFullDTO toClothFullDTO(ClothEntity clothEntity);
+    ClothWithoutStocksAndPhotosDTO toClothWithoutStocksAndPhotos(ClothEntity clothEntity);
 
     DesignDTO toDesignDTO(DesignEntity designEntity);
 
@@ -54,5 +56,6 @@ public interface EntityConverter {
     StockFullDTO toStockFullDTO(StockEntity stockEntity);
 
     StockWithSizeDTO toStockWithSizeDTO(StockEntity stockEntity);
+
 
 }

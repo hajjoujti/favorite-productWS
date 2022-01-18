@@ -12,6 +12,7 @@ import org.al36.favorite.productws.dto.ProductTypeWithoutClothesDTO;
 import org.al36.favorite.productws.dto.SizeDTO;
 import org.al36.favorite.productws.dto.SizeWithoutStocksDTO;
 import org.al36.favorite.productws.dto.StockDTO;
+import org.al36.favorite.productws.dto.StockFullDTO;
 import org.al36.favorite.productws.dto.StockWithSizeDTO;
 import org.al36.favorite.productws.entity.ClothEntity;
 import org.al36.favorite.productws.entity.DesignEntity;
@@ -49,6 +50,8 @@ public interface EntityConverter {
     SizeWithoutStocksDTO toSizeWithoutStocksDTO(SizeEntity sizeEntity);
 
     StockDTO toStockDTO(StockEntity stockEntity);
+
+    StockFullDTO toStockFullDTO(StockEntity stockEntity);
 
     StockWithSizeDTO toStockWithSizeDTO(StockEntity stockEntity);
 

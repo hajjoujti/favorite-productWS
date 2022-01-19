@@ -121,6 +121,8 @@
 						<exclude>**/entity/*</exclude>
 						<exclude>**/dto/*</exclude>
 						<exclude>**/config/*</exclude>
+						<exclude>**/rest/*</exclude>
+						<exclude>**/repository/*</exclude>
 					</excludes>
 				</configuration>
 				<executions>

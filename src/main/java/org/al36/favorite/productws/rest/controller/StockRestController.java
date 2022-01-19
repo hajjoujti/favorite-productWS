@@ -1,6 +1,6 @@
 package org.al36.favorite.productws.rest.controller;
 
-import org.al36.favorite.productws.dto.OrderLineForProductWSDTO;
+import org.al36.favorite.productws.dto.StockDTO;
 import org.al36.favorite.productws.dto.StockFullDTO;
 import org.al36.favorite.productws.rest.StockRestOperations;
 import org.al36.favorite.productws.rest.message.GenericMessage;
@@ -26,17 +26,17 @@ public class StockRestController implements StockRestOperations {
 
 
     @Override
-    public ResponseEntity<Object> updateStocks(List<OrderLineForProductWSDTO> orderLines) {
+    public ResponseEntity<Object> updateStocks(List<StockDTO> stockDTOS) {
         List<StockFullDTO> stockFullDTOS = new ArrayList<>();
-        for(OrderLineForProductWSDTO orderLine : orderLines) {
-            StockFullDTO stockFullDTO = stockService.getStockByClothAndSize(orderLine.getCloth(), orderLine.getSize());
+        for(StockDTO stock : stockDTOS) {
+            StockFullDTO stockFullDTO = stockService.geStockById(stock.getId());
             if(stockFullDTO == null){
                 return new ResponseEntity<>(
                         new GenericMessage(HttpStatus.NOT_FOUND.toString(),
                                            StockResponseMessage.STOCK_NOT_FOUND.toString()),
                         HttpStatus.NOT_FOUND);
             }
-            stockFullDTO.setQuantity(stockFullDTO.getQuantity() - orderLine.getQuantity());
+            stockFullDTO.setQuantity(stockFullDTO.getQuantity() - stock.getQuantity());
             stockFullDTOS.add(stockFullDTO);
         }
 

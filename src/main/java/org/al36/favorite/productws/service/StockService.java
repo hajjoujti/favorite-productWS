@@ -12,6 +12,8 @@ public interface StockService {
     StockFullDTO getStockByClothAndSize(ClothWithoutStocksAndPhotosDTO clothWithoutStocksAndPhotosDTODTO,
                                         SizeWithoutStocksDTO sizeWithoutStocksDTODTO);
 
+    StockFullDTO geStockById(Integer id);
+
     List<StockFullDTO> createUpdatedStockDTOSFromOrderLineDTOS(List<OrderLineForProductWSDTO> orderLines);
 
     List<StockFullDTO> updateStocks(List<StockFullDTO> stockFullDTOS);

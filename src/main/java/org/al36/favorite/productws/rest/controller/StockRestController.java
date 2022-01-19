@@ -35,10 +35,9 @@ public class StockRestController implements StockRestOperations {
                                            StockResponseMessage.STOCK_NOT_FOUND.toString()),
                         HttpStatus.NOT_FOUND);
             }
-            if(stockFullDTO.getCloth() == null){
-                stockFullDTO.setCloth(stock.getCloth());
-            }
-            stockFullDTO.setQuantity(stockFullDTO.getQuantity() - stock.getQuantity());
+            stockFullDTO.setCloth(stock.getCloth());
+            stockFullDTO.setSize(stock.getSize());
+            stockFullDTO.setQuantity(stock.getQuantity());
             stockFullDTOS.add(stockFullDTO);
         }
 

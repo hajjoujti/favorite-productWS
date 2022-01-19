@@ -1,6 +1,6 @@
 package org.al36.favorite.productws.rest;
 
-import org.al36.favorite.productws.dto.StockDTO;
+import org.al36.favorite.productws.dto.StockFullDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +12,6 @@ import java.util.List;
 public interface StockRestOperations {
 
     @PutMapping
-    ResponseEntity<Object> updateStocks(@RequestBody List<StockDTO> stockDTOS);
+    ResponseEntity<Object> updateStocks(@RequestBody List<StockFullDTO> stockDTOS);
 
 }

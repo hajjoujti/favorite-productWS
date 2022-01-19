@@ -121,6 +121,8 @@
 						<exclude>**/entity/*</exclude>
 						<exclude>**/dto/*</exclude>
 						<exclude>**/config/*</exclude>
+						<exclude>**/rest/*</exclude>
+						<exclude>**/repository/*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
@@ -167,6 +169,9 @@
 				<groupId>com.github.spotbugs</groupId>
 				<artifactId>spotbugs-maven-plugin</artifactId>
 				<version>4.2.2</version>
+				<configuration>
+					<failOnError>false</failOnError>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

@@ -106,9 +106,8 @@ pipeline {
 
             step([
               $class           : 'JacocoPublisher',
-              execPattern      : 'build/jacoco/jacoco.exec',
-              classPattern     : 'build/classes/main',
-              sourcePattern    : 'src/main/java',
+              execPattern      : '**/target/jacoco.exec',
+              classPattern     : '**/target/classes/org/al36/favorite/productws/*',
               exclusionPattern : '**/*Test.class'
           ])
         }

@@ -33,6 +33,34 @@ pipeline {
                 }
             }
         }
+              
+        stage('Quality Gate') {
+            parallel{
+                stage('Checkstyle'){
+                    steps {
+                        echo "*********************Checkstyle*********************"
+                        sh 'mvn checkstyle:check'
+                        recordIssues tool: checkStyle(pattern: '**/target/checkstyle-result.xml')
+                    }
+                }
+                
+                stage('Spotbugs'){
+                    steps {
+                        echo "*********************Spotbugs*********************"
+                        sh 'mvn spotbugs:check'
+                        recordIssues tool: spotBugs(pattern: '**/target/spotbugsXml.xml')
+                    }
+                }
+            }
+        }
+        
+        stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('LOCAL_SONAR') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
 
         stage('Package') {
             steps {
@@ -69,4 +97,19 @@ pipeline {
             }
         }
     }
+   
+    post{
+        changed{
+            recordIssues aggregatingResults: true, 
+            tools: [ checkStyle(pattern: '**/target/checkstyle-result.xml'),
+            spotBugs(pattern: '**/target/spotbugsXml.xml')]
+
+            step([
+              $class           : 'JacocoPublisher',
+              execPattern      : '**/target/jacoco.exec',
+              classPattern     : '**/target/classes/org/al36/favorite/productws/*',
+              exclusionPattern : '**/*Test.class'
+          ])
+        }
+    }                                                                                    
 }

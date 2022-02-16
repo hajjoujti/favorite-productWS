@@ -84,15 +84,13 @@ public class ProductRestController implements ProductRestOperations {
     }
 
     @Override
-    public ResponseEntity<GenericMessage> postCloth(ClothFullDTO clothFullDTO) {
+    public ResponseEntity<Object> postCloth(ClothFullDTO clothFullDTO) {
         if(clothService.getClothByReference(clothFullDTO.getReference()) != null) {
             return new ResponseEntity<>(new GenericMessage(HttpStatus.CONFLICT.toString(),
                                                            ProductResponseMessage.SAME_REFERENCE_CONFLICT.toString()),
                                         HttpStatus.CONFLICT);
         }
-        clothService.saveCloth(clothFullDTO);
-        return new ResponseEntity<>(new GenericMessage(HttpStatus.CREATED.toString(),
-                                                       ProductResponseMessage.CLOTH_CREATED.toString()),
+        return new ResponseEntity<>(clothService.saveCloth(clothFullDTO),
                                     HttpStatus.CREATED);
     }
 

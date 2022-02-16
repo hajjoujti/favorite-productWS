@@ -27,7 +27,7 @@ public interface ProductRestOperations {
     ResponseEntity<Object> getAllClothesByProductType(@PathVariable String productTypeName);
 
     @PostMapping
-    ResponseEntity<GenericMessage> postCloth(@RequestBody ClothFullDTO clothFullDTO);
+    ResponseEntity<Object> postCloth(@RequestBody ClothFullDTO clothFullDTO);
 
     @PutMapping
     ResponseEntity<Object> updateCloth(@RequestBody ClothFullDTO clothFullDTO);

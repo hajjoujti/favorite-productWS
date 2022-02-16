@@ -44,6 +44,11 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
+    public StockFullDTO geStockById(Integer id) {
+        return entityConverter.toStockFullDTO(stockRepository.findById(id).orElse(null));
+    }
+
+    @Override
     public List<StockFullDTO> createUpdatedStockDTOSFromOrderLineDTOS(List<OrderLineForProductWSDTO> orderLines) {
         List<StockFullDTO> stockFullDTOS = new ArrayList<>();
         orderLines.forEach(orderLine -> {

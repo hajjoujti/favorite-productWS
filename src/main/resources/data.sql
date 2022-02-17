@@ -13,7 +13,7 @@ INSERT INTO `location` VALUES ('Centre avant'),('Centre dos'),('Epaule gauche'),
 INSERT INTO `product_type` VALUES ('Manteaux & Vestes'),('Pulls'),('Chemises'),('T-Shirts'),('Pantalons'),('Jeans'),('Accessoires');
 INSERT INTO `location_product_type` VALUES ('Centre avant','T-Shirts'),('Centre dos','T-Shirts'),('Epaule droite','T-Shirts'),('Epaule gauche','T-Shirts'),('Centre avant','Chemises'),('Centre dos','Chemises'),('Epaule droite','Chemises'),('Epaule gauche','Chemises'),('Centre avant','Pulls'),('Centre dos','Pulls'), ('Epaule droite','Pulls'),('Epaule gauche','Pulls'),('Centre avant','Manteaux & Vestes'),('Centre dos','Manteaux & Vestes'),('Epaule droite','Manteaux & Vestes'),('Epaule gauche','Manteaux & Vestes'),('Poche avant droite','Jeans'),('Poche avant gauche','Jeans'),('Poche arriere droite','Jeans'),('Poche arriere gauche','Jeans'),('Poche avant droite','Pantalons'),('Poche avant gauche', 'Pantalons'),('Poche arriere droite','Pantalons'),('Poche arriere gauche','Pantalons');
 
-INSERT INTO `size` VALUES ('XS'),('S'),('M'),('L'),('XL'),('XXL'),('34'),('36'),('38'),('40'),('42'),('44');
+INSERT INTO `size` VALUES ('XS'),('S'),('M'),('L'),('XL'),('XXL'),('34'),('36'),('38'),('40'),('42'),('44'),('Taille unique');
 
 INSERT INTO `productWS_db`.`cloth` (`id`,`description`,`name`,`price`,`ref_creation_date`,`ref_deletion_date`,`reference`,`product_type_name`) VALUES (1,NULL,'Pull col rond',49.99,'2021-01-01','2021-03-01','SS20Pu001','Pulls');
 INSERT INTO `productWS_db`.`cloth` (`id`,`description`,`name`,`price`,`ref_creation_date`,`ref_deletion_date`,`reference`,`product_type_name`) VALUES (2,'Vous protège du vent et de la pluie pour vous garder au sec. Une parka confortable et fonctionnelle qui vous offre une grande liberté de mouvement.','Parka',89.99,'2021-01-01',null,'FW21MV005','Manteaux & Vestes');
@@ -44,9 +44,9 @@ INSERT INTO `stock` VALUES (49,10,9,'XS'),(50,8,9,'S'),(51,7,9,'M'),(52,8,9,'L')
 INSERT INTO `stock` VALUES (55,6,10,'XS'),(56,7,10,'S'),(57,5,10,'M'),(58,7,10,'L'),(59,8,10,'XL'),(60,8,10,'XXL');
 INSERT INTO `stock` VALUES (61,8,11,'XS'),(62,7,11,'S'),(63,7,11,'M'),(64,7,11,'L'),(65,8,11,'XL'),(66,9,11,'XXL');
 INSERT INTO `stock` VALUES (67,10,12,'XS'),(68,6,12,'S'),(69,5,12,'M'),(70,6,12,'L'),(71,7,12,'XL'),(72,7,12,'XXL');
-INSERT INTO `stock` VALUES (73,0,13,'XS'),(74,0,13,'S'),(75,7,13,'M'),(76,0,13,'L'),(77,0,13,'XL'),(78,0,13,'XXL');
-INSERT INTO `stock` VALUES (79,0,14,'XS'),(80,0,14,'S'),(81,9,14,'M'),(82,0,14,'L'),(83,0,14,'XL'),(84,0,14,'XXL');
-INSERT INTO `stock` VALUES (85,0,15,'XS'),(86,0,15,'S'),(87,8,15,'M'),(88,0,15,'L'),(89,0,15,'XL'),(90,0,15,'XXL');
+INSERT INTO `stock` VALUES (75,7,13,'Taille unique');
+INSERT INTO `stock` VALUES (81,9,14,'Taille unique');
+INSERT INTO `stock` VALUES (87,8,15,'Taille unique');
 
 INSERT INTO `photo` VALUES (1,'manteau_vue_globale','https://eql-favorite.s3.eu-west-3.amazonaws.com/static/photos/product/MANTEAU_CAPUCHE_1.jpg');
 INSERT INTO `photo` VALUES (2,'manteau_detail_1','https://eql-favorite.s3.eu-west-3.amazonaws.com/static/photos/product/MANTEAU_CAPUCHE_2.jpg');
